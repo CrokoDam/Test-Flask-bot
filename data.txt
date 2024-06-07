@@ -1,0 +1,19 @@
+ FMER – A FleetManagementEquipmentReposition is an empty reposition created as part of the block planning Process where an empty reposition move is created as part of tour. The goal of FMER VRID is to prevent a TPA later.
+
+ TPA - A TrailerPoolAdjustment VRID is an empty reposition created after the block planning Process because our scheduling plans indicate a Node will be short of trailers if a move is not scheduled. TPAs may 1) be placed on the load board for carriers to book or 2) may be enriched to an existing tour.  TPAs put on the load board should never be flipped to bobtail.  
+
+ CFET – A CustomerFacingEmptyTrailer VRID is an empty reposition that is required to execute the next VRID on the tour. A driver must bring a trailer with them to complete the pickup.
+
+ Bobtail – A “bobtail” refers to a tractor movement without a trailer. These are non-value added moves because driver is moving neither customer packages or equipment. 
+
+ Approved Bobtail – Refers to a FMER VRID that can’t be completed because a trailer is not available. To be flipped, we must verify 1) a driver has checked in at the Site using a YMS (Y) check in and 2) a trailer has not been assigned. Since trailer availability is Amazon controllable, the flip to bobtail is approved. 
+
+ Unapproved Bobtail – Refers to a FMER VRID that won’t be completed due to driver/carrier controllable reasons because the driver has 1) failed to check in at the Site or 2) they are refusing to haul an assigned trailer, or 3) left the Site before getting Relay Operations Center (ROC) approval. The FMER is flipped to bobtail to protect the next VRID on the tour, but is unapproved. 
+
+ C2R – Click2Resolve is a workflow designed to automate no empty trailer Disruptions. When a driver creates a Disruption in R4D for No Empties, C2R will verify if 1) driver has a YMS check in and 2) if a trailer was available and assigned. If successful, C2R will automatically flip to BobtailMovementAnnotation  and prevent the Disruption coming to ROC. 
+
+ R4D – Relay4Driver is an APP that drivers use to operate within the Amazon network. 
+
+ ATA – Automated Trailer Assignment is a tool managed by YardGateTech. It is designed to automatically assign an empty trailer to a TPA or FMER VRID once the driver checks in at the Site.
+
+ Note: In case of no empties or trailer details requested by carrier/driver, ROC shouldn't reveal any parking spot or Dock Door (DD) number. Direct the driver towards guardshack for more information. In case of no guardshack, please inform driver/carrier to request call back after SDT.

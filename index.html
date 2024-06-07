@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOAP</title>
+    <style>
+        body {
+            background-image: ('');
+            background-color: #ffffff; /* Grey background */
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #a8aeff;
+            margin-right: 10px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #989898;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+        }
+
+        #bot-response {
+            background-color: #a0a0a0;
+            border-radius: 5px;
+            padding: 125px;
+            margin-top: 20px;
+            max-width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>ROC SOP Bot</h1>
+    <form id="user-form">
+        <input type="text" name="user_input" placeholder="Type your message...">
+        <button type="submit">Click here</button>
+    </form>
+    <div id="bot-response"></div>
+
+    <script>
+        document.getElementById('user-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const response = await fetch('/ask', {
+                method: 'POST',
+                body: formData
+            });
+            const text = await response.text();
+            document.getElementById('bot-response').innerText = text;
+        });
+    </script>
+</body>
+</html>
