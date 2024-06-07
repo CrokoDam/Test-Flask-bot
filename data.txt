@@ -1,19 +1,37 @@
  FMER – A FleetManagementEquipmentReposition is an empty reposition created as part of the block planning Process where an empty reposition move is created as part of tour. The goal of FMER VRID is to prevent a TPA later.
 
- TPA - A TrailerPoolAdjustment VRID is an empty reposition created after the block planning Process because our scheduling plans indicate a Node will be short of trailers if a move is not scheduled. TPAs may 1) be placed on the load board for carriers to book or 2) may be enriched to an existing tour.  TPAs put on the load board should never be flipped to bobtail.  
+ TPA - A TrailerPoolAdjustment VRID is an empty reposition created after the block planning Process because our scheduling plans indicate a Node will be short of trailers if a move is not scheduled. TPAs may (1) be placed on the load board for carriers to book or (2) may be enriched to an existing tour.  TPAs put on the load board should never be flipped to bobtail.  
 
  CFET – A CustomerFacingEmptyTrailer VRID is an empty reposition that is required to execute the next VRID on the tour. A driver must bring a trailer with them to complete the pickup.
 
  Bobtail – A “bobtail” refers to a tractor movement without a trailer. These are non-value added moves because driver is moving neither customer packages or equipment. 
 
- Approved Bobtail – Refers to a FMER VRID that can’t be completed because a trailer is not available. To be flipped, we must verify 1) a driver has checked in at the Site using a YMS (Y) check in and 2) a trailer has not been assigned. Since trailer availability is Amazon controllable, the flip to bobtail is approved. 
+ Approved Bobtail – Refers to a FMER VRID that can’t be completed because a trailer is not available. To be flipped, we must verify (1) a driver has checked in at the Site using a YMS (Y) check in and (2) a trailer has not been assigned. Since trailer availability is Amazon controllable, the flip to bobtail is approved. If Less than 200 Miles Proceed to create a Bobtail or modify FMER to Bobtail on any loads without approval
 
- Unapproved Bobtail – Refers to a FMER VRID that won’t be completed due to driver/carrier controllable reasons because the driver has 1) failed to check in at the Site or 2) they are refusing to haul an assigned trailer, or 3) left the Site before getting Relay Operations Center (ROC) approval. The FMER is flipped to bobtail to protect the next VRID on the tour, but is unapproved. 
+ Unapproved Bobtail – Refers to a FMER VRID that won’t be completed due to driver/carrier controllable reasons because the driver has (1) failed to check in at the Site or (2) they are refusing to haul an assigned trailer, or (3) left the Site before getting Relay Operations Center (ROC) approval. The FMER is flipped to bobtail to protect the next VRID on the tour, but is unapproved. 
 
- C2R – Click2Resolve is a workflow designed to automate no empty trailer Disruptions. When a driver creates a Disruption in R4D for No Empties, C2R will verify if 1) driver has a YMS check in and 2) if a trailer was available and assigned. If successful, C2R will automatically flip to BobtailMovementAnnotation  and prevent the Disruption coming to ROC. 
+ C2R – Click2Resolve is a workflow designed to automate no empty trailer Disruptions. When a driver creates a Disruption in R4D for No Empties, C2R will verify if (1) driver has a YMS check in and (2) if a trailer was available and assigned. If successful, C2R will automatically flip to BobtailMovementAnnotation  and prevent the Disruption coming to ROC. 
 
  R4D – Relay4Driver is an APP that drivers use to operate within the Amazon network. 
 
  ATA – Automated Trailer Assignment is a tool managed by YardGateTech. It is designed to automatically assign an empty trailer to a TPA or FMER VRID once the driver checks in at the Site.
 
  Note: In case of no empties or trailer details requested by carrier/driver, ROC shouldn't reveal any parking spot or Dock Door (DD) number. Direct the driver towards guardshack for more information. In case of no guardshack, please inform driver/carrier to request call back after SDT.
+
+ If Greater than 350 Miles or more than 350 miles L3 Associates are NOT supposed to create a Bobtail or modify FMER to Bobtail on any loads or in any scenario for >350 miles. Instead, L3 Associates are required to reach out to L4 Process lead/Manager through FMER-BT Approval chime group or transfer the call to escalation queue and get the Bobtail Vehicle Run Identification (VRID) (VRID) created or modified only by an L4 Process lead/Manager. L4 Process lead/Manager has to update load notes appropriately.
+
+if 200 to 350 Miles Associates are required to take L4 Process lead/Manager approval in the chime group (FMER - >BT Approval), in order to create a Bobtail or modify FMER to Bobtail on any loads. Also, "approved by @'login of approver' " has to be mentioned in the load notes of Bobtail created/modified by making it NOT visible to carrier.
+
+Driver clearly cannot complete the load.  Detour the VRID from the tour, then reject as per Rejection SOP. (Reject the remaining tour as per the Rejection SOP. If detoured VRID has check ins -Request a BU for any CF loads). Inform carrier/driver that the VRID will be Cancelled once the case is worked. (Create a Remove Truck case utilizing the Case creation guidelines, note the exceptions in section 4.1). IF CF resolve the WIM with the reason “Load Needs Recovery at Origin”.
+
+Driver stating there are no empties in site and next load is live load. Check for redirections available within 100 miles. If there are no redirections, cancel the empty leg and detour the Live Load VRID and create a case for rescheduling
+
+What is a Run Structure? - Run Structure is a way to split long hauls into multiple short hauls (typically two) which can be hauled by multiple solo drivers. In a Run Structure, the first driver will drop the trailer at an intermediate Amazon Site, from where a second driver will pick & deliver the same load at the intended destination.
+
+A Run Structure WIM is generated for the following reasons: (1)Overlapping Timeslots - If the timings are Overlapping between VRIDs in RS, create a case and transfer the case to Specific AZIM TrailerPoolAdjustment. (2) Missing or incorrect run:If there are any missing legs in trip, create a case to Intermodal Team to adjust the RS accordingly
+
+DDU - Destination Delivery Unit also known as DDU. In this loads, drivers or carriers book a route going to multiple post offices while delivering the load. DM ROC supports the drivers if any of the POs are closed in route or if they face any disruption in delivering
+
+DDU PO closed - If a PO is closed in the route, Driver needs to wait until SAT and needs to raise a call back to ROC for assistance. Amazon Associate needs to contact the Post Masters from the updated AEG file shared to them via Chime Chatrooms. If the PMs provide any ETA, inform the same to the driver. If the PMs do not respond over calls, advise the driver to wait until SAT (Standard Arrival Time) + 30 minutes and raise a CB.
+
+How to use AEG - If Agent wants to contact the PM (Post Masters), Open the AEG file and go to the first sheet of the excel file "ZIP & UAD". After going to the sheet, Site key needs to be pasted in the box in which Site key is highlighted. Numbers of the Post Masters along with there names will be visible. The names and numbers will not be visivle ony if the AEG is not refreshed 
